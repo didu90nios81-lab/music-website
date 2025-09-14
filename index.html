@@ -540,7 +540,7 @@
         
         function initializeGallery() {
             const gallery = document.getElementById('photoGallery');
-            const imageCount = 7;
+            const imageCount = 8; // Ditambah dari 7 menjadi 8
             
             for (let i = 1; i <= imageCount; i++) {
                 const container = document.createElement('div');
@@ -554,14 +554,16 @@
                 img.style.display = 'none';
                 
                 placeholder.className = 'gallery-placeholder';
-                placeholder.innerHTML = `<div style="margin-top: 20px;">${i}.jpg</div>`;
+                placeholder.innerHTML = `<div style="margin-top: 20px;">${i}.jp${i === 8 ? 'eg' : 'g'}</div>`;
                 
                 // Try multiple paths for each gallery image
                 const imagePaths = [
-                    `gambar/${i}.jpg`,
+                    `gambar/${i}.jp${i === 8 ? 'eg' : 'g'}`,
                     `gambar/${i}.jpeg`,
-                    `https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/${i}.jpg`,
-                    `https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/${i}.jpeg`
+                    `gambar/${i}.jpg`,
+                    `https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/${i}.jp${i === 8 ? 'eg' : 'g'}`,
+                    `https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/${i}.jpeg`,
+                    `https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/${i}.jpg`
                 ];
                 
                 tryLoadFile(
