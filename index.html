@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Interaktif</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .main-image {
+            width: 300px;
+            height: auto;
+            max-height: 300px;
+            border-radius: 15px;
+            margin: 20px auto;
+            object-fit: contain;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .main-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .question {
+            font-size: 24px;
+            margin: 30px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-yes {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+        }
+        
+        .btn-yes:hover {
+            background: linear-gradient(45deg, #45a049, #4CAF50);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .btn-no {
+            background: linear-gradient(45deg, #f44336, #da190b);
+            color: white;
+        }
+        
+        .btn-no:hover {
+            background: linear-gradient(45deg, #da190b, #f44336);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+        }
+        
+        .content-area {
+            display: none;
+            margin-top: 30px;
+        }
+        
+        .music-player {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .gallery-photo {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-photo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .error-message {
+            display: none;
+            font-size: 28px;
+            color: #ff4757;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin: 30px 0;
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        .lyrics {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: left;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .lyrics h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        audio {
+            width: 100%;
+            max-width: 500px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+        }
+        
+        .lyrics-text {
+            line-height: 1.8;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .lyrics-text p {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="initial-screen">
+            <img src="gambar/WhatsApp Image 2025-09-14 at 15.48.30_a1fb7b57.jpg"
+                 alt="Gambar Utama" class="main-image">
+            
+            <div class="question">
+                Apakah Anda Mau?
+            </div>
+            
+            <div class="buttons">
+                <button class="btn-yes" onclick="showContent()">Boleh Deh</button>
+                <button class="btn-no" onclick="showError()">Gamau</button>
+            </div>
+        </div>
+        
+        <div id="error-message" class="error-message">
+            ERROR: Ga Boleh Nolak!!!! wkwkwk.
+        </div>
+        
+        <div id="content-area" class="content-area">
+            <h2 class="fade-in">Untuk Manusia Khusus</h2>
+            
+            <div class="music-player fade-in">
+                <h3>🎧 Audio Player</h3>
+                
+                <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; text-align: center;">
+                    <div style="margin-bottom: 15px;">
+                        <h4 style="color: #ffd700; margin-bottom: 5px;">🎵 "Peachy World - Drizzly"</h4>
+                        <p style="opacity: 0.8; font-size: 14px;">Now Playing...</p>
+                    </div>
+                    
+                    <!-- INI ADALAH LINE UNTUK AUDIO ANDA! -->
+                    <audio id="audioPlayer" controls>
+                        <source src="audio/Peachy World - Drizzly..mp3" type="audio/mpeg">
+                        <source src="audio/Peachy World - Drizzly..ogg" type="audio/ogg">
+                        <source src="audio/Peachy World - Drizzly..wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <!-- ↑ ALAMAT FILE AUDIO ANDA ADA DI ATAS ↑ -->
+                    
+                    <!-- DEBUG: Test link untuk cek file -->
+                </div>
+            </div>
+            
+            <div class="lyrics fade-in">
+                <h3>📝 Lirik Lagu - "Peachy World - Drizzly"</h3>
+                <p><strong>Judul:</strong> Peachy World - Drizzly</p>
+                <p><strong>Penyanyi:</strong> Drizzly</p>
+                <br>
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
+                    <p style="text-align: center; font-style: italic; color: #ffd700;">
+                        🎵 Lirik akan ditampilkan di sini 🎵
+                    </p>
+                    <br>
+                    <div class="lyrics-text">
+                        <p>I follow you, pretend you want me to</p>
+                        <p>Living a dream of your love</p>
+                        <p>You never showed me how much you scared of what was going on</p>
+                        <p>Was going on</p>
+                        <p></p>
+                        <p>Then i do stupid things</p>
+                        <p>The things i always do</p>
+                        <p>This time with you</p>
+                        <p>Our love is new</p>
+                        <p></p>
+                        <p>I need someone to be close remember</p>
+                        <p>My own demons on our mind</p>
+                        <p>Sneak under my pillow</p>
+                        <p>Not someone, i just need you</p>
+                        <p></p>
+                        <p>Then i do stupid things</p>
+                        <p>The things i always do</p>
+                        <p>This time with you</p>
+                        <p>Our love is new</p>
+                        <p></p>
+                        <p>I need someone to be close remember</p>
+                        <p>My own demons on our mind</p>
+                        <p>Sneak under my pillow</p>
+                        <p>Not someone, i just need you</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="photo-gallery fade-in">
+                <img src="gambar/1.jpg" 
+                     alt="Foto 1" class="gallery-photo">
+                <img src="gambar/2.jpg" 
+                     alt="Foto 2" class="gallery-photo">
+                <img src="gambar/3.jpg" 
+                     alt="Foto 3" class="gallery-photo">
+                <img src="gambar/4.jpg" 
+                     alt="Foto 4" class="gallery-photo">
+                <img src="gambar/5.jpg" 
+                     alt="Foto 5" class="gallery-photo">
+                <img src="gambar/6.jpg" 
+                     alt="Foto 6" class="gallery-photo">
+                <img src="gambar/7.jpg" 
+                     alt="Foto 7" class="gallery-photo">                                                               
+            </div>
+            
+            <button class="btn-no" onclick="resetPage()" style="margin-top: 20px;">
+                🔄 Kembali ke Awal
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        function showContent() {
+            document.getElementById('initial-screen').style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('content-area').style.display = 'block';
+            
+            // Auto-play musik saat tombol "Ya" diklik
+            setTimeout(() => {
+                const audio = document.getElementById('audioPlayer');
+                if (audio) {
+                    audio.play().catch(e => {
+                        console.log('Auto-play prevented by browser:', e);
+                        // Jika auto-play diblokir browser, tampilkan notifikasi
+                        alert('🎵 Klik tombol play pada audio player untuk memulai musik!');
+                    });
+                }
+            }, 500);
+        }
+        
+        function showError() {
+            document.getElementById('error-message').style.display = 'block';
+            // Tombol "Tidak" tetap tersedia untuk diklik lagi
+            setTimeout(() => {
+                document.getElementById('error-message').style.display = 'none';
+            }, 3000); // Error hilang setelah 3 detik
+        }
+        
+        function resetPage() {
+            document.getElementById('initial-screen').style.display = 'block';
+            document.getElementById('error-message').style.display = 'none';
+            document.getElementById('content-area').style.display = 'none';
+        }
+        
+        // Add click effects to gallery photos
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryPhotos = document.querySelectorAll('.gallery-photo');
+            galleryPhotos.forEach(photo => {
+                photo.addEventListener('click', function() {
+                    // Bisa ditambahkan modal atau lightbox di sini
+                    alert('Foto diklik! Anda bisa menambahkan lightbox atau modal di sini.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
