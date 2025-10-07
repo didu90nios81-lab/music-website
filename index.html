@@ -19,13 +19,14 @@
             justify-content: center;
             align-items: center;
             color: white;
+            padding: 20px;
         }
         
         .container {
             text-align: center;
-            max-width: 800px;
-            width: 90%;
-            padding: 20px;
+            max-width: 900px;
+            width: 100%;
+            padding: 30px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
@@ -34,14 +35,14 @@
         }
         
         .main-image {
-            width: 300px;
-            height: 300px;
+            max-width: 400px;
+            max-height: 400px;
+            width: 100%;
             border-radius: 15px;
             margin: 20px auto;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
             display: block;
         }
         
@@ -49,38 +50,11 @@
             transform: scale(1.05);
         }
         
-        .placeholder-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 15px;
-            margin: 20px auto;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .placeholder-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="50" r="3" fill="rgba(255,255,255,0.3)"><animate attributeName="opacity" dur="1s" values="1;0;1" repeatCount="indefinite" begin="0s"/></circle><circle cx="50" cy="50" r="3" fill="rgba(255,255,255,0.3)"><animate attributeName="opacity" dur="1s" values="1;0;1" repeatCount="indefinite" begin="0.3s"/></circle><circle cx="80" cy="50" r="3" fill="rgba(255,255,255,0.3)"><animate attributeName="opacity" dur="1s" values="1;0;1" repeatCount="indefinite" begin="0.6s"/></circle></svg>') center/50px no-repeat;
-        }
-        
         .question {
-            font-size: 24px;
+            font-size: 28px;
             margin: 30px 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-weight: bold;
         }
         
         .buttons {
@@ -88,6 +62,7 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+            margin: 20px 0;
         }
         
         button {
@@ -124,72 +99,6 @@
             box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
         }
         
-        .content-area {
-            display: none;
-            margin-top: 30px;
-        }
-        
-        .music-player {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-        }
-        
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .gallery-photo {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .gallery-photo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .gallery-placeholder {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border: 2px dashed rgba(255, 255, 255, 0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .gallery-placeholder:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.1));
-            border-color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .gallery-placeholder::before {
-            content: '📷';
-            font-size: 24px;
-            margin-bottom: 8px;
-            opacity: 0.6;
-        }
-        
         .error-message {
             display: none;
             font-size: 28px;
@@ -205,24 +114,140 @@
             75% { transform: translateX(10px); }
         }
         
-        .lyrics {
+        .folder-menu {
+            display: none;
+        }
+        
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .folder-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px 20px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .folder-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .folder-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .folder-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .folder-description {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .gallery-view {
+            display: none;
+        }
+        
+        .gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .gallery-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .btn-back {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 25px;
+            font-size: 14px;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .gallery-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-photo {
+            transform: scale(1.1);
+        }
+        
+        .video-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .video-item {
             background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        
+        .video-item video {
+            width: 100%;
+            border-radius: 8px;
+        }
+        
+        .music-player {
+            background: rgba(255, 255, 255, 0.2);
             padding: 20px;
             border-radius: 15px;
             margin: 20px 0;
-            text-align: left;
-            max-height: 300px;
-            overflow-y: auto;
         }
         
-        .lyrics h3 {
-            text-align: center;
-            margin-bottom: 15px;
+        .music-player audio {
+            width: 100%;
+            max-width: 500px;
+            margin: 10px auto;
+            display: block;
+        }
+        
+        .music-title {
+            font-size: 16px;
+            margin-bottom: 10px;
             color: #ffd700;
         }
         
         .fade-in {
-            animation: fadeIn 1s ease-in;
+            animation: fadeIn 0.5s ease-in;
         }
         
         @keyframes fadeIn {
@@ -230,95 +255,23 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        audio {
-            width: 100%;
-            max-width: 500px;
-            margin: 15px 0;
-            border-radius: 10px;
+        .hidden {
+            display: none !important;
         }
         
-        .lyrics-text {
-            line-height: 1.8;
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .lyrics-text p {
-            margin-bottom: 8px;
-        }
-        
-        .file-status {
-            font-size: 12px;
-            margin-top: 10px;
-            padding: 8px 12px;
-            border-radius: 20px;
-            display: inline-block;
-        }
-        
-        .status-loading {
-            background: rgba(255, 193, 7, 0.2);
-            color: #ffc107;
-            border: 1px solid rgba(255, 193, 7, 0.3);
-        }
-        
-        .status-error {
-            background: rgba(220, 53, 69, 0.2);
-            color: #dc3545;
-            border: 1px solid rgba(220, 53, 69, 0.3);
-        }
-        
-        .status-success {
-            background: rgba(40, 167, 69, 0.2);
-            color: #28a745;
-            border: 1px solid rgba(40, 167, 69, 0.3);
-        }
-        
-        .audio-controls {
-            background: rgba(255,255,255,0.1); 
-            padding: 20px; 
-            border-radius: 15px; 
-            text-align: center;
-        }
-        
-        .github-link {
-            font-size: 12px;
+        .loading {
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 5px 10px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        
-        .github-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            text-decoration: none;
+            margin: 20px 0;
         }
         
         @media (max-width: 768px) {
             .container {
-                width: 95%;
-                padding: 15px;
-            }
-            
-            .main-image, .placeholder-image {
-                max-width: 100%;
-                max-height: 350px;
-                width: auto;
-                height: auto;
-            }
-            
-            .container {
-                width: 95%;
                 padding: 20px;
-                min-height: 60vh;
             }
             
             .question {
-                font-size: 20px;
+                font-size: 22px;
             }
             
             button {
@@ -326,304 +279,298 @@
                 font-size: 16px;
             }
             
+            .folder-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
             .photo-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-                gap: 10px;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .video-gallery {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="initial-screen">
-            <img id="mainImage" src="" alt="Gambar Utama" class="main-image" style="display: none;">
-            <div id="mainImagePlaceholder" class="placeholder-image">
-                <div style="text-align: center;">
-                    <div style="font-size: 48px; margin-bottom: 10px;">🖼️</div>
-                    <div style="font-size: 16px; font-weight: bold;">Gambar Utama</div>
-                    <div style="font-size: 12px; opacity: 0.8; margin-top: 5px;">abc.jpeg</div>
-                </div>
-                <div id="mainImageStatus" class="file-status status-loading">📡 Memuat...</div>
-            </div>
-            
-            <div class="question">
-                Apakah Anda Mau?
-            </div>
-            
+        <!-- Stage 1: Pertanyaan Pertama -->
+        <div id="stage1" class="fade-in">
+            <img id="menuImage1" class="main-image" src="https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/menu/abc.jpg" alt="Menu 1">
+            <div class="question">Apakah Anda Mau?</div>
             <div class="buttons">
-                <button class="btn-yes" onclick="showContent()">Boleh Deh</button>
-                <button class="btn-no" onclick="showError()">Gamau</button>
+                <button class="btn-yes" onclick="goToStage2()">Boleh Deh</button>
+                <button class="btn-no" onclick="showError(1)">Gamau</button>
             </div>
+            <div id="error1" class="error-message">ERROR: Ga Boleh Nolak!!!! wkwkwk.</div>
         </div>
-        
-        <div id="error-message" class="error-message">
-            ERROR: Ga Boleh Nolak!!!! wkwkwk.
-        </div>
-        
-        <div id="content-area" class="content-area">
-            <h2 class="fade-in">Untuk Manusia Khusus</h2>
-            
-            <div class="music-player fade-in">
-                <h3>For The prettiest purba girl</h3>
-                
-                <div class="audio-controls">
-                    <div style="margin-bottom: 15px;">
-                        <h4 style="color: #ffd700; margin-bottom: 5px;">🎵 "Peachy World - Drizzly"</h4>
-                        <p style="opacity: 0.8; font-size: 14px;">Now Playing...</p>
-                    </div>
-                    
-                    <audio id="audioPlayer" controls preload="metadata">
-                        <source id="audioSource" src="" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
-                    
-                    <div id="audioStatus" class="file-status status-loading">📡 Memuat audio...</div>
-                    
-                    <a href="https://github.com/didu90nios81-lab/music-website" target="_blank" class="github-link">
 
-                    </a>
-                </div>
+        <!-- Stage 2: Pertanyaan Kedua -->
+        <div id="stage2" class="hidden">
+            <img id="menuImage2" class="main-image" src="https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/menu/menu2.jpg" alt="Menu 2">
+            <div class="question">Yakin Mau?</div>
+            <div class="buttons">
+                <button class="btn-yes" onclick="goToFolderMenu()">Ya, Yakin!</button>
+                <button class="btn-no" onclick="showError(2)">Tidak Jadi</button>
             </div>
-            
-            <div class="lyrics fade-in">
-                <h3> Lirik Lagu - "Peachy World - Drizzly"</h3>
-                <p><strong>Judul:</strong> Peachy World - Drizzly</p>
-                <br>
-                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px;">
-                    <p style="text-align: center; font-style: italic; color: #ffd700;">
-                        🎵 Lirik Lagu 🎵
-                    </p>
-                    <br>
-                    <div class="lyrics-text">
-                        <p>I follow you, pretend you want me to</p>
-                        <p>Living a dream of your love</p>
-                        <p>You never showed me how much you scared of what was going on</p>
-                        <p>Was going on</p>
-                        <p></p>
-                        <p>Then i do stupid things</p>
-                        <p>The things i always do</p>
-                        <p>This time with you</p>
-                        <p>Our love is new</p>
-                        <p></p>
-                        <p>I need someone to be close remember</p>
-                        <p>My own demons on our mind</p>
-                        <p>Sneak under my pillow</p>
-                        <p>Not someone, i just need you</p>
-                        <p></p>
-                        <p>Then i do stupid things</p>
-                        <p>The things i always do</p>
-                        <p>This time with you</p>
-                        <p>Our love is new</p>
-                        <p></p>
-                        <p>I need someone to be close remember</p>
-                        <p>My own demons on our mind</p>
-                        <p>Sneak under my pillow</p>
-                        <p>Not someone, i just need you</p>
-                    </div>
-                </div>
-            </div>
-            
-            <h3 class="fade-in" style="margin: 30px 0 15px 0;">📸 Galeri Foto</h3>
-            <div class="photo-gallery fade-in" id="photoGallery">
-                <!-- Gallery items will be generated by JavaScript -->
-            </div>
-            
+            <div id="error2" class="error-message">ERROR: Sudah Sampai Sini Kok Nolak!!!</div>
+        </div>
+
+        <!-- Folder Menu -->
+        <div id="folderMenu" class="folder-menu">
+            <div class="question fade-in">Pilih Folder yang Ingin Dilihat</div>
+            <div class="folder-grid fade-in" id="folderGrid"></div>
             <button class="btn-no" onclick="resetPage()" style="margin-top: 20px;">
                 🔄 Kembali ke Awal
             </button>
         </div>
+
+        <!-- Gallery View -->
+        <div id="galleryView" class="gallery-view">
+            <div class="gallery-header">
+                <div class="gallery-title" id="galleryTitle"></div>
+                <button class="btn-back" onclick="backToFolderMenu()">← Kembali</button>
+            </div>
+            
+            <div id="musicPlayerContainer" class="hidden">
+                <div class="music-player">
+                    <div class="music-title" id="musicTitle">🎵 Now Playing...</div>
+                    <audio id="audioPlayer" controls></audio>
+                </div>
+            </div>
+            
+            <div id="photoGalleryContainer" class="photo-gallery"></div>
+            <div id="videoGalleryContainer" class="video-gallery"></div>
+            
+            <div class="loading" id="galleryLoading">Memuat konten...</div>
+        </div>
     </div>
-    
+
     <script>
-        // Konfigurasi file paths - sesuaikan dengan struktur GitHub Anda
-        const FILE_PATHS = {
-            mainImage: [
-                'gambar/abc.jpg',  // Coba ekstensi .jpg dulu
-                'gambar/abc.jpeg', // Lalu .jpeg
-                'https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/abc.jpg',
-                'https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/abc.jpeg'
-            ],
-            audio: [
-                'audio/Peachy-World-Drizzly.mp3',
-                'audio/audio/Peachy-World-Drizzly.mp3',
-                'https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/audio/Peachy-World-Drizzly.mp3',
-                'https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/audio/audio/Peachy-World-Drizzly.mp3'
-            ],
-            gallery: [
-                'gambar/',
-                'https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/'
-            ]
+        const GITHUB_BASE = 'https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/';
+        
+        const FOLDERS_CONFIG = {
+            fotobersama: {
+                name: 'Foto Bersama',
+                icon: '👫',
+                description: 'Kenangan bersama',
+                type: 'photo',
+                music: 'audio/audio/wave to earth - bad (Official Lyric Video).mp3',
+                musicTitle: 'wave to earth - bad'
+            },
+            gambar: {
+                name: 'Galeri Utama',
+                icon: '📸',
+                description: 'Koleksi foto',
+                type: 'photo',
+                music: 'audio/audio/Peachy-World-Drizzly.mp3',
+                musicTitle: 'Peachy World - Drizzly'
+            },
+            gambarsendiri: {
+                name: 'Foto Sendiri',
+                icon: '🤳',
+                description: 'Foto khusus',
+                type: 'photo',
+                music: 'audio/audio/Peachy-World-Drizzly.mp3',
+                musicTitle: 'Peachy World - Drizzly'
+            },
+            masak: {
+                name: 'Masak-Masakan',
+                icon: '🍳',
+                description: 'Foto masakan',
+                type: 'photo',
+                music: 'audio/audio/Peachy-World-Drizzly.mp3',
+                musicTitle: 'Peachy World - Drizzly'
+            },
+            video: {
+                name: 'Video',
+                icon: '🎬',
+                description: 'Koleksi video',
+                type: 'video'
+            }
         };
-        
-        // Initialize page
+
+        let currentFolder = null;
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            initializeMainImage();
-            initializeGallery();
-            initializeAudio();
+            createFolderMenu();
         });
-        
-        function tryLoadFile(paths, onSuccess, onError, fileType = 'image') {
-            let currentIndex = 0;
-            
-            function tryNext() {
-                if (currentIndex >= paths.length) {
-                    onError();
-                    return;
-                }
-                
-                const currentPath = paths[currentIndex];
-                
-                if (fileType === 'image') {
-                    const img = new Image();
-                    img.onload = () => onSuccess(currentPath);
-                    img.onerror = () => {
-                        currentIndex++;
-                        tryNext();
-                    };
-                    img.src = currentPath;
-                } else if (fileType === 'audio') {
-                    const audio = new Audio();
-                    audio.addEventListener('canplaythrough', () => onSuccess(currentPath));
-                    audio.addEventListener('error', () => {
-                        currentIndex++;
-                        tryNext();
-                    });
-                    audio.src = currentPath;
-                }
-            }
-            
-            tryNext();
+
+        function goToStage2() {
+            document.getElementById('stage1').classList.add('hidden');
+            document.getElementById('stage2').classList.remove('hidden');
+            document.getElementById('stage2').classList.add('fade-in');
         }
-        
-        function initializeMainImage() {
-            const mainImage = document.getElementById('mainImage');
-            const placeholder = document.getElementById('mainImagePlaceholder');
-            const status = document.getElementById('mainImageStatus');
-            
-            tryLoadFile(
-                FILE_PATHS.mainImage,
-                (successPath) => {
-                    mainImage.src = successPath;
-                    placeholder.style.display = 'none';
-                    mainImage.style.display = 'block';
-                    status.className = 'file-status status-success';
-                    status.textContent = '✅ Berhasil dimuat';
-                },
-                () => {
-                    status.className = 'file-status status-error';
-                    status.textContent = '❌ File tidak ditemukan';
-                }
-            );
-        }
-        
-        function initializeAudio() {
-            const audioPlayer = document.getElementById('audioPlayer');
-            const audioSource = document.getElementById('audioSource');
-            const status = document.getElementById('audioStatus');
-            
-            tryLoadFile(
-                FILE_PATHS.audio,
-                (successPath) => {
-                    audioSource.src = successPath;
-                    audioPlayer.load();
-                    status.className = 'file-status status-success';
-                },
-                () => {
-                    status.className = 'file-status status-error';
-                    status.textContent = '❌ File audio tidak ditemukan';
-                },
-                'audio'
-            );
-        }
-        
-        function initializeGallery() {
-            const gallery = document.getElementById('photoGallery');
-            const imageCount = 8;
-            
-            for (let i = 1; i <= imageCount; i++) {
-                const container = document.createElement('div');
-                container.style.position = 'relative';
-                
-                const img = document.createElement('img');
-                const placeholder = document.createElement('div');
-                
-                img.alt = `Foto ${i}`;
-                img.className = 'gallery-photo';
-                img.style.display = 'none';
-                
-                placeholder.className = 'gallery-placeholder';
-                placeholder.innerHTML = `<div style="margin-top: 20px;">${i}.jpg</div>`;
-                
-                // Try multiple paths for each gallery image
-                const imagePaths = [
-                    `gambar/${i}.jpg`,
-                    `gambar/${i}.jpeg`,
-                    `https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/${i}.jpg`,
-                    `https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/gambar/${i}.jpeg`
-                ];
-                
-                tryLoadFile(
-                    imagePaths,
-                    (successPath) => {
-                        img.src = successPath;
-                        placeholder.style.display = 'none';
-                        img.style.display = 'block';
-                        img.onclick = () => showImageModal(`Foto ${i}`, successPath);
-                    },
-                    () => {
-                        placeholder.style.display = 'flex';
-                        img.style.display = 'none';
-                        placeholder.onclick = () => {
-                            showNotification(`Foto ${i} tidak ditemukan. Periksa folder gambar/`);
-                        };
-                    }
-                );
-                
-                container.appendChild(img);
-                container.appendChild(placeholder);
-                gallery.appendChild(container);
-            }
-        }
-        
-        function showContent() {
-            document.getElementById('initial-screen').style.display = 'none';
-            document.getElementById('error-message').style.display = 'none';
-            document.getElementById('content-area').style.display = 'block';
-            
-            // Auto-play musik saat tombol "Ya" diklik
-            setTimeout(() => {
-                const audio = document.getElementById('audioPlayer');
-                if (audio && audio.readyState >= 2) {
-                    audio.play().catch(e => {
-                        console.log('Auto-play prevented by browser:', e);
-                        showNotification('🎵 Klik tombol play pada audio player untuk memulai musik!');
-                    });
-                }
-            }, 500);
-        }
-        
-        function showError() {
-            const errorElement = document.getElementById('error-message');
+
+        function showError(stage) {
+            const errorElement = document.getElementById('error' + stage);
             errorElement.style.display = 'block';
-            
             setTimeout(() => {
                 errorElement.style.display = 'none';
             }, 3000);
         }
-        
-        function resetPage() {
-            document.getElementById('initial-screen').style.display = 'block';
-            document.getElementById('error-message').style.display = 'none';
-            document.getElementById('content-area').style.display = 'none';
+
+        function goToFolderMenu() {
+            document.getElementById('stage2').classList.add('hidden');
+            document.getElementById('folderMenu').style.display = 'block';
+        }
+
+        function createFolderMenu() {
+            const grid = document.getElementById('folderGrid');
             
+            Object.keys(FOLDERS_CONFIG).forEach(folderId => {
+                const folder = FOLDERS_CONFIG[folderId];
+                const card = document.createElement('div');
+                card.className = 'folder-card';
+                card.onclick = () => openFolder(folderId);
+                
+                card.innerHTML = `
+                    <div class="folder-icon">${folder.icon}</div>
+                    <div class="folder-name">${folder.name}</div>
+                    <div class="folder-description">${folder.description}</div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        async function openFolder(folderId) {
+            currentFolder = folderId;
+            const folder = FOLDERS_CONFIG[folderId];
+            
+            document.getElementById('folderMenu').style.display = 'none';
+            document.getElementById('galleryView').style.display = 'block';
+            document.getElementById('galleryTitle').textContent = folder.icon + ' ' + folder.name;
+            
+            document.getElementById('photoGalleryContainer').innerHTML = '';
+            document.getElementById('videoGalleryContainer').innerHTML = '';
+            document.getElementById('galleryLoading').style.display = 'block';
+            
+            if (folder.type === 'photo') {
+                document.getElementById('musicPlayerContainer').classList.remove('hidden');
+                loadMusic(folder.music, folder.musicTitle);
+                await loadPhotoGallery(folderId);
+            } else if (folder.type === 'video') {
+                document.getElementById('musicPlayerContainer').classList.add('hidden');
+                await loadVideoGallery();
+            }
+            
+            document.getElementById('galleryLoading').style.display = 'none';
+        }
+
+        function loadMusic(musicPath, title) {
             const audio = document.getElementById('audioPlayer');
-            if (audio) {
-                audio.pause();
-                audio.currentTime = 0;
+            const musicTitle = document.getElementById('musicTitle');
+            
+            audio.src = GITHUB_BASE + musicPath;
+            musicTitle.textContent = '🎵 ' + title;
+            
+            setTimeout(() => {
+                audio.play().catch(e => console.log('Auto-play prevented:', e));
+            }, 500);
+        }
+
+        async function loadPhotoGallery(folderId) {
+            const container = document.getElementById('photoGalleryContainer');
+            
+            // Mapping file names based on screenshots
+            const filePatterns = {
+                fotobersama: ['fb1', 'fb10', 'fb2', 'fb3', 'fb4', 'fb5', 'fb6', 'fb7', 'fb8', 'fb9', 'fototangan'],
+                gambar: ['g1', 'g2', 'g3', 'g4', 'hiu', 'nametag', 'nametag2', 'nametag3', 'temennya hiu'],
+                gambarsendiri: ['1', 's1', 's2', 's3'],
+                masak: ['m1', 'm2', 'm3', 'm4', 'm5', 'masak1']
+            };
+            
+            const files = filePatterns[folderId] || [];
+            
+            for (const fileName of files) {
+                await new Promise((resolve) => {
+                    const img = new Image();
+                    img.src = GITHUB_BASE + `${folderId}/${fileName}.jpg`;
+                    img.className = 'gallery-photo';
+                    img.alt = fileName;
+                    
+                    img.onload = () => {
+                        const item = document.createElement('div');
+                        item.className = 'gallery-item';
+                        item.appendChild(img);
+                        item.onclick = () => showImageModal(img.src, fileName);
+                        container.appendChild(item);
+                        resolve();
+                    };
+                    
+                    img.onerror = () => {
+                        // Try .jpeg extension
+                        const altImg = new Image();
+                        altImg.src = GITHUB_BASE + `${folderId}/${fileName}.jpeg`;
+                        altImg.className = 'gallery-photo';
+                        altImg.alt = fileName;
+                        
+                        altImg.onload = () => {
+                            const item = document.createElement('div');
+                            item.className = 'gallery-item';
+                            item.appendChild(altImg);
+                            item.onclick = () => showImageModal(altImg.src, fileName);
+                            container.appendChild(item);
+                            resolve();
+                        };
+                        
+                        altImg.onerror = () => resolve();
+                    };
+                });
             }
         }
-        
-        function showImageModal(title, src) {
+
+        async function loadVideoGallery() {
+            const container = document.getElementById('videoGalleryContainer');
+            
+            // Based on screenshot, video files are: 1.mp4, 2.mp4, jalandikapal.mp4
+            const videoFiles = ['1', '2', 'jalandikapal'];
+            
+            for (const fileName of videoFiles) {
+                const video = document.createElement('video');
+                video.controls = true;
+                video.preload = 'metadata';
+                video.src = GITHUB_BASE + `video/${fileName}.mp4`;
+                
+                await new Promise((resolve) => {
+                    video.onloadedmetadata = () => {
+                        const item = document.createElement('div');
+                        item.className = 'video-item';
+                        item.appendChild(video);
+                        container.appendChild(item);
+                        resolve();
+                    };
+                    
+                    video.onerror = () => resolve();
+                });
+            }
+        }
+
+        function backToFolderMenu() {
+            const audio = document.getElementById('audioPlayer');
+            audio.pause();
+            audio.currentTime = 0;
+            
+            document.getElementById('galleryView').style.display = 'none';
+            document.getElementById('folderMenu').style.display = 'block';
+        }
+
+        function resetPage() {
+            const audio = document.getElementById('audioPlayer');
+            audio.pause();
+            audio.currentTime = 0;
+            
+            document.getElementById('stage1').classList.remove('hidden');
+            document.getElementById('stage2').classList.add('hidden');
+            document.getElementById('folderMenu').style.display = 'none';
+            document.getElementById('galleryView').style.display = 'none';
+        }
+
+        function showImageModal(src, title) {
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed;
@@ -631,13 +578,14 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0,0,0,0.9);
+                background: rgba(0,0,0,0.95);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 z-index: 1000;
                 cursor: pointer;
+                padding: 20px;
             `;
             
             const img = document.createElement('img');
@@ -645,7 +593,7 @@
             img.alt = title;
             img.style.cssText = `
                 max-width: 90%;
-                max-height: 80%;
+                max-height: 85%;
                 border-radius: 15px;
                 box-shadow: 0 10px 50px rgba(0,0,0,0.5);
                 object-fit: contain;
@@ -658,54 +606,17 @@
                 font-size: 18px;
                 margin-top: 20px;
                 padding: 10px 20px;
-                background: rgba(0,0,0,0.5);
+                background: rgba(0,0,0,0.7);
                 border-radius: 10px;
             `;
             caption.textContent = title;
             
             modal.appendChild(img);
             modal.appendChild(caption);
-            
-            modal.onclick = function() {
-                document.body.removeChild(modal);
-            };
+            modal.onclick = () => document.body.removeChild(modal);
             
             document.body.appendChild(modal);
-        }
-        
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(135deg, #667eea, #764ba2);
-                color: white;
-                padding: 15px 20px;
-                border-radius: 10px;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-                z-index: 1001;
-                font-size: 14px;
-                max-width: 300px;
-                border: 1px solid rgba(255,255,255,0.2);
-            `;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                if (document.body.contains(notification)) {
-                    notification.style.opacity = '0';
-                    notification.style.transform = 'translateX(100%)';
-                    setTimeout(() => {
-                        if (document.body.contains(notification)) {
-                            document.body.removeChild(notification);
-                        }
-                    }, 300);
-                }
-            }, 4000);
         }
     </script>
 </body>
 </html>
-
