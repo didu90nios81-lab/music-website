@@ -355,7 +355,7 @@
             fotobersama: {
                 name: 'Foto Bersama',
                 icon: '😊',
-                description: 'Kenangan bersama',
+                description: 'Terima Kasih Ya Udah Mau Ngajak Aku Foto',
                 type: 'photo',
                 music: 'audio/audio/wave to earth - bad (Official Lyric Video).mp3',
                 musicTitle: 'wave to earth - bad'
@@ -371,7 +371,7 @@
             gambarsendiri: {
                 name: 'Foto Sendiri',
                 icon: '😊',
-                description: 'Foto khusus',
+                description: 'Foto Manusia Khusus',
                 type: 'photo',
                 music: 'audio/audio/Peachy-World-Drizzly.mp3',
                 musicTitle: 'Peachy World - Drizzly'
@@ -379,7 +379,7 @@
             masak: {
                 name: 'Memberi makan Mahasiwa Tidak Sehat',
                 icon: '🍳',
-                description: 'Foto masakan',
+                description: 'Terima Kasih Banyak Ya, Maaf aku cuman bisa ngasi susu tiap balikin wadah bekel, dan maaf buat wadah bekelmu yang rusak',
                 type: 'photo',
                 music: 'audio/audio/Peachy-World-Drizzly.mp3',
                 musicTitle: 'Peachy World - Drizzly'
@@ -387,7 +387,7 @@
             video: {
                 name: 'Video',
                 icon: '🎬',
-                description: 'Koleksi video',
+                description: ':)',
                 type: 'video'
             }
         };
@@ -466,7 +466,7 @@
             const musicTitle = document.getElementById('musicTitle');
             
             audio.src = GITHUB_BASE + musicPath;
-            musicTitle.textContent = '🎵 ' + title;
+            musicTitle.textContent =  title;
             
             setTimeout(() => {
                 audio.play().catch(e => console.log('Auto-play prevented:', e));
@@ -620,6 +620,7 @@
     </script>
 </body>
 </html>
+
 
 
 
