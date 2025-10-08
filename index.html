@@ -524,31 +524,45 @@ const GITHUB_BASE = 'https://raw.githack.com/didu90nios81-lab/music-website/main
             }
         }
 
-        async function loadVideoGallery() {
-            const container = document.getElementById('videoGalleryContainer');
+async function loadVideoGallery() {
+    const container = document.getElementById('videoGalleryContainer');
+    
+    // Daftar file video yang kamu punya
+    const videoFiles = ['1', '2', 'jalandikapal'];
+    
+    for (const fileName of videoFiles) {
+        const video = document.createElement('video');
+        video.controls = true;
+        video.preload = 'metadata';
+        
+        // Uji dulu apakah file .webm ada
+        const webmSrc = GITHUB_BASE + `video/${fileName}.webm`;
+        const mp4Src = GITHUB_BASE + `video/${fileName}.mp4`;
+
+        // Coba load versi webm dulu
+        video.src = webmSrc;
+        video.type = 'video/webm';
+
+        // Jika gagal load webm, fallback ke mp4
+        video.onerror = () => {
+            video.src = mp4Src;
+            video.type = 'video/mp4';
+        };
+
+        await new Promise((resolve) => {
+            video.onloadedmetadata = () => {
+                const item = document.createElement('div');
+                item.className = 'video-item';
+                item.appendChild(video);
+                container.appendChild(item);
+                resolve();
+            };
             
-            // Based on screenshot, video files are: 1.mp4, 2.mp4, jalandikapal.mp4
-            const videoFiles = ['1', '2', 'jalandikapal'];
-            
-            for (const fileName of videoFiles) {
-                const video = document.createElement('video');
-                video.controls = true;
-                video.preload = 'metadata';
-                video.src = GITHUB_BASE + `video/${fileName}.mp4`;
-                
-                await new Promise((resolve) => {
-                    video.onloadedmetadata = () => {
-                        const item = document.createElement('div');
-                        item.className = 'video-item';
-                        item.appendChild(video);
-                        container.appendChild(item);
-                        resolve();
-                    };
-                    
-                    video.onerror = () => resolve();
-                });
-            }
-        }
+            video.onerror = () => resolve();
+        });
+    }
+}
+
 
         function backToFolderMenu() {
             const audio = document.getElementById('audioPlayer');
@@ -620,6 +634,7 @@ const GITHUB_BASE = 'https://raw.githack.com/didu90nios81-lab/music-website/main
     </script>
 </body>
 </html>
+
 
 
 
