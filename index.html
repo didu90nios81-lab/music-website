@@ -470,9 +470,8 @@ const GITHUB_BASE = 'https://raw.githack.com/didu90nios81-lab/music-website/main
             audio.src = GITHUB_BASE + musicPath;
             musicTitle.textContent =  title;
             
-            setTimeout(() => {
-                audio.play().catch(e => console.log('Auto-play prevented:', e));
-            }, 500);
+    audio.pause();
+    audio.currentTime = 0;
         }
 
         async function loadPhotoGallery(folderId) {
@@ -636,6 +635,7 @@ async function loadVideoGallery() {
     </script>
 </body>
 </html>
+
 
 
 
