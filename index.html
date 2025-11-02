@@ -6,7 +6,6 @@
     <title>FOR THE PRETIIEST PURBA GIRL</title>
     <link rel="icon" type="image/png" href="download.png">
     <style>
-   
         * {
             margin: 0;
             padding: 0;
@@ -268,37 +267,18 @@
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            .question {
-                font-size: 22px;
-            }
-            
-            button {
-                padding: 12px 30px;
-                font-size: 16px;
-            }
-            
-            .folder-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 15px;
-            }
-            
-            .photo-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-            
-            .video-gallery {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 20px; }
+            .question { font-size: 22px; }
+            button { padding: 12px 30px; font-size: 16px; }
+            .folder-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+            .photo-gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+            .video-gallery { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Stage 1: Pertanyaan Pertama -->
+        <!-- Stage 1 -->
         <div id="stage1" class="fade-in">
             <img id="menuImage1" class="main-image" src="https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/menu/abc.jpg" alt="Menu 1">
             <div class="question">Apakah Anda Mau?</div>
@@ -309,7 +289,7 @@
             <div id="error1" class="error-message">ERROR: Ga Boleh Nolak!!!! wkwkwk.</div>
         </div>
 
-        <!-- Stage 2: Pertanyaan Kedua -->
+        <!-- Stage 2 -->
         <div id="stage2" class="hidden">
             <img id="menuImage2" class="main-image" src="https://raw.githubusercontent.com/didu90nios81-lab/music-website/main/menu/menu2.jpg" alt="Menu 2">
             <div class="question">Will You?</div>
@@ -324,9 +304,7 @@
         <div id="folderMenu" class="folder-menu">
             <div class="question fade-in">Pilih Folder yang Ingin Dilihat</div>
             <div class="folder-grid fade-in" id="folderGrid"></div>
-            <button class="btn-no" onclick="resetPage()" style="margin-top: 20px;">
-                🔄 Kembali ke Awal
-            </button>
+            <button class="btn-no" onclick="resetPage()" style="margin-top: 20px;">🔄 Kembali ke Awal</button>
         </div>
 
         <!-- Gallery View -->
@@ -345,7 +323,6 @@
             
             <div id="photoGalleryContainer" class="photo-gallery"></div>
             <div id="videoGalleryContainer" class="video-gallery"></div>
-            
             <div class="loading" id="galleryLoading">Memuat konten...</div>
         </div>
     </div>
@@ -353,203 +330,156 @@
     <script>
 const GITHUB_BASE = 'https://raw.githack.com/didu90nios81-lab/music-website/main/';
         
-        const FOLDERS_CONFIG = {
-            fotobersama: {
-                name: 'Foto Bersama',
-                icon: '😊',
-                description: 'Terima Kasih Ya Udah Mau Ngajak Aku Foto',
-                type: 'photo',
-                music: 'audio/audio/wave to earth - bad (Official Lyric Video).mp3',
-                musicTitle: 'wave to earth - bad'
-            },
-            gambar: {
-                name: 'Lain-Lain',
-                icon: '📸',
-                description: 'Koleksi foto',
-                type: 'photo',
-                music: 'audio/audio/Peachy-World-Drizzly.mp3',
-                musicTitle: 'Peachy World - Drizzly'
-            },
-            gambarsendiri: {
-                name: 'Foto Sendiri',
-                icon: '😊',
-                description: 'Foto Manusia Khusus',
-                type: 'photo',
-                music: 'audio/audio/Ditakko Homa Rohakki.mp3',
-                musicTitle: 'Marsada - Ditakko Homa Rohakki'
-            },
-            masak: {
-                name: 'Memberi makan Mahasiwa Tidak Sehat',
-                icon: '🍳',
-                description: 'Terima Kasih Banyak Ya, Maaf aku cuman bisa ngasi susu tiap balikin wadah bekel, dan maaf buat wadah bekelmu yang rusak',
-                type: 'photo',
-                music: 'audio/audio/Peachy-World-Drizzly.mp3',
-                musicTitle: 'Peachy World - Drizzly'
-            },
-            video: {
-                name: 'Video',
-                icon: '🎬',
-                description: ':)',
-                type: 'video'
-            }
-        };
+const FOLDERS_CONFIG = {
+    fotobersama: {
+        name: 'Foto Bersama',
+        icon: '😊',
+        description: 'Terima Kasih Ya Udah Mau Ngajak Aku Foto',
+        type: 'photo',
+        music: 'audio/audio/wave to earth - bad (Official Lyric Video).mp3',
+        musicTitle: 'wave to earth - bad'
+    },
+    gambar: {
+        name: 'Lain-Lain',
+        icon: '📸',
+        description: 'Koleksi foto',
+        type: 'photo',
+        music: 'audio/audio/Peachy-World-Drizzly.mp3',
+        musicTitle: 'Peachy World - Drizzly'
+    },
+    gambarsendiri: {
+        name: 'Foto Sendiri',
+        icon: '😊',
+        description: 'Foto Manusia Khusus',
+        type: 'photo',
+        music: 'audio/audio/Ditakko Homa Rohakki.mp3',
+        musicTitle: 'Marsada - Ditakko Homa Rohakki'
+    },
+    masak: {
+        name: 'Memberi makan Mahasiwa Tidak Sehat',
+        icon: '🍳',
+        description: 'Terima Kasih Banyak Ya...',
+        type: 'photo',
+        music: 'audio/audio/Peachy-World-Drizzly.mp3',
+        musicTitle: 'Peachy World - Drizzly'
+    },
+    video: {
+        name: 'Video',
+        icon: '🎬',
+        description: ':)',
+        type: 'video'
+    }
+};
 
-        let currentFolder = null;
+let currentFolder = null;
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            createFolderMenu();
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    createFolderMenu();
+});
 
-        function goToStage2() {
-            document.getElementById('stage1').classList.add('hidden');
-            document.getElementById('stage2').classList.remove('hidden');
-            document.getElementById('stage2').classList.add('fade-in');
-        }
+function goToStage2() {
+    document.getElementById('stage1').classList.add('hidden');
+    document.getElementById('stage2').classList.remove('hidden');
+    document.getElementById('stage2').classList.add('fade-in');
+}
 
-        function showError(stage) {
-            const errorElement = document.getElementById('error' + stage);
-            errorElement.style.display = 'block';
-            setTimeout(() => {
-                errorElement.style.display = 'none';
-            }, 3000);
-        }
+function showError(stage) {
+    const errorElement = document.getElementById('error' + stage);
+    errorElement.style.display = 'block';
+    setTimeout(() => { errorElement.style.display = 'none'; }, 3000);
+}
 
-        function goToFolderMenu() {
-            document.getElementById('stage2').classList.add('hidden');
-            document.getElementById('folderMenu').style.display = 'block';
-        }
+function goToFolderMenu() {
+    document.getElementById('stage2').classList.add('hidden');
+    document.getElementById('folderMenu').style.display = 'block';
+}
 
-        function createFolderMenu() {
-            const grid = document.getElementById('folderGrid');
-            
-            Object.keys(FOLDERS_CONFIG).forEach(folderId => {
-                const folder = FOLDERS_CONFIG[folderId];
-                const card = document.createElement('div');
-                card.className = 'folder-card';
-                card.onclick = () => openFolder(folderId);
-                
-                card.innerHTML = `
-                    <div class="folder-icon">${folder.icon}</div>
-                    <div class="folder-name">${folder.name}</div>
-                    <div class="folder-description">${folder.description}</div>
-                `;
-                
-                grid.appendChild(card);
-            });
-        }
+function createFolderMenu() {
+    const grid = document.getElementById('folderGrid');
+    Object.keys(FOLDERS_CONFIG).forEach(folderId => {
+        const folder = FOLDERS_CONFIG[folderId];
+        const card = document.createElement('div');
+        card.className = 'folder-card';
+        card.onclick = () => openFolder(folderId);
+        card.innerHTML = `
+            <div class="folder-icon">${folder.icon}</div>
+            <div class="folder-name">${folder.name}</div>
+            <div class="folder-description">${folder.description}</div>
+        `;
+        grid.appendChild(card);
+    });
+}
 
-        async function openFolder(folderId) {
-            currentFolder = folderId;
-            const folder = FOLDERS_CONFIG[folderId];
-            
-            document.getElementById('folderMenu').style.display = 'none';
-            document.getElementById('galleryView').style.display = 'block';
-            document.getElementById('galleryTitle').textContent = folder.icon + ' ' + folder.name;
-            
-            document.getElementById('photoGalleryContainer').innerHTML = '';
-            document.getElementById('videoGalleryContainer').innerHTML = '';
-            document.getElementById('galleryLoading').style.display = 'block';
-            
-            if (folder.type === 'photo') {
-                document.getElementById('musicPlayerContainer').classList.remove('hidden');
-                loadMusic(folder.music, folder.musicTitle);
-                await loadPhotoGallery(folderId);
-            } else if (folder.type === 'video') {
-                document.getElementById('musicPlayerContainer').classList.add('hidden');
-                await loadVideoGallery();
-            }
-            
-            document.getElementById('galleryLoading').style.display = 'none';
-        }
+async function openFolder(folderId) {
+    currentFolder = folderId;
+    const folder = FOLDERS_CONFIG[folderId];
+    
+    document.getElementById('folderMenu').style.display = 'none';
+    document.getElementById('galleryView').style.display = 'block';
+    document.getElementById('galleryTitle').textContent = folder.icon + ' ' + folder.name;
+    
+    document.getElementById('photoGalleryContainer').innerHTML = '';
+    document.getElementById('videoGalleryContainer').innerHTML = '';
+    document.getElementById('galleryLoading').style.display = 'block';
+    
+    if (folder.type === 'photo') {
+        document.getElementById('musicPlayerContainer').classList.remove('hidden');
+        loadMusic(folder.music, folder.musicTitle);
+        await loadPhotoGallery(folderId);
+    } else if (folder.type === 'video') {
+        document.getElementById('musicPlayerContainer').classList.add('hidden');
+        await loadVideoGallery();
+    }
+    document.getElementById('galleryLoading').style.display = 'none';
+}
 
-        function loadMusic(musicPath, title) {
-            const audio = document.getElementById('audioPlayer');
-            const musicTitle = document.getElementById('musicTitle');
-            
-            audio.src = GITHUB_BASE + musicPath;
-            musicTitle.textContent =  title;
-            
+// === Perubahan utama di sini ===
+function loadMusic(musicPath, title) {
+    const audio = document.getElementById('audioPlayer');
+    const musicTitle = document.getElementById('musicTitle');
+    audio.src = GITHUB_BASE + musicPath;
+    musicTitle.textContent = title;
     audio.pause();
     audio.currentTime = 0;
-        }
+}
+// ================================
 
-        async function loadPhotoGallery(folderId) {
-            const container = document.getElementById('photoGalleryContainer');
-            
-            // Mapping file names based on screenshots
-            const filePatterns = {
+async function loadPhotoGallery(folderId) {
+    const container = document.getElementById('photoGalleryContainer');
+    const filePatterns = {
                 fotobersama: ['fb1', 'fb10', 'fb2', 'fb3', 'fb4', 'fb5', 'fb6', 'fb7', 'fb8', 'fb9', 'fototangan'],
                 gambar: ['g1', 'g2', 'g3', 'g4', 'hiu', 'nametag', 'nametag2', 'nametag3', 'temennya hiu', 'g5','g6'],
                 gambarsendiri: ['1', 's1', 's2', 's3', 's4', 's5', 's6','s7','s8','s9','s10','s11','s12'],
                 masak: ['m1', 'm2', 'm3', 'm4', 'm5', 'masak1', 'm6', 'maaf ya mel yang ini lupa di foto','m7','m8','m9,''m13']
+    };
+    const files = filePatterns[folderId] || [];
+    for (const fileName of files) {
+        await new Promise((resolve) => {
+            const img = new Image();
+            img.src = GITHUB_BASE + `${folderId}/${fileName}.jpg`;
+            img.className = 'gallery-photo';
+            img.alt = fileName;
+            img.onload = () => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                item.appendChild(img);
+                item.onclick = () => showImageModal(img.src, fileName);
+                container.appendChild(item);
+                resolve();
             };
-            
-            const files = filePatterns[folderId] || [];
-            
-            for (const fileName of files) {
-                await new Promise((resolve) => {
-                    const img = new Image();
-                    img.src = GITHUB_BASE + `${folderId}/${fileName}.jpg`;
-                    img.className = 'gallery-photo';
-                    img.alt = fileName;
-                    
-                    img.onload = () => {
-                        const item = document.createElement('div');
-                        item.className = 'gallery-item';
-                        item.appendChild(img);
-                        item.onclick = () => showImageModal(img.src, fileName);
-                        container.appendChild(item);
-                        resolve();
-                    };
-                    
-                    img.onerror = () => {
-                        // Try .jpeg extension
-                        const altImg = new Image();
-                        altImg.src = GITHUB_BASE + `${folderId}/${fileName}.jpeg`;
-                        altImg.className = 'gallery-photo';
-                        altImg.alt = fileName;
-                        
-                        altImg.onload = () => {
-                            const item = document.createElement('div');
-                            item.className = 'gallery-item';
-                            item.appendChild(altImg);
-                            item.onclick = () => showImageModal(altImg.src, fileName);
-                            container.appendChild(item);
-                            resolve();
-                        };
-                        
-                        altImg.onerror = () => resolve();
-                    };
-                });
-            }
-        }
+            img.onerror = () => resolve();
+        });
+    }
+}
 
 async function loadVideoGallery() {
     const container = document.getElementById('videoGalleryContainer');
-    
-    // Daftar file video yang kamu punya
-    const videoFiles = ['1', '2', 'jalandikapal','4','5', '6', '7'];
-    
+    const videoFiles = ['1','2','jalandikapal','4'];
     for (const fileName of videoFiles) {
         const video = document.createElement('video');
         video.controls = true;
         video.preload = 'metadata';
-        
-        // Uji dulu apakah file .webm ada
-        const webmSrc = GITHUB_BASE + `video/${fileName}.webm`;
-        const mp4Src = GITHUB_BASE + `video/${fileName}.mp4`;
-
-        // Coba load versi webm dulu
-        video.src = webmSrc;
-        video.type = 'video/webm';
-
-        // Jika gagal load webm, fallback ke mp4
-        video.onerror = () => {
-            video.src = mp4Src;
-            video.type = 'video/mp4';
-        };
-
+        video.src = GITHUB_BASE + `video/${fileName}.mp4`;
         await new Promise((resolve) => {
             video.onloadedmetadata = () => {
                 const item = document.createElement('div');
@@ -558,105 +488,60 @@ async function loadVideoGallery() {
                 container.appendChild(item);
                 resolve();
             };
-            
             video.onerror = () => resolve();
         });
     }
 }
 
+function backToFolderMenu() {
+    document.getElementById('galleryView').style.display = 'none';
+    document.getElementById('folderMenu').style.display = 'block';
+    const audio = document.getElementById('audioPlayer');
+    audio.pause();
+    audio.currentTime = 0;
+}
 
-        function backToFolderMenu() {
-            const audio = document.getElementById('audioPlayer');
-            audio.pause();
-            audio.currentTime = 0;
-            
-            document.getElementById('galleryView').style.display = 'none';
-            document.getElementById('folderMenu').style.display = 'block';
-        }
+function resetPage() {
+    location.reload();
+}
 
-        function resetPage() {
-            const audio = document.getElementById('audioPlayer');
-            audio.pause();
-            audio.currentTime = 0;
-            
-            document.getElementById('stage1').classList.remove('hidden');
-            document.getElementById('stage2').classList.add('hidden');
-            document.getElementById('folderMenu').style.display = 'none';
-            document.getElementById('galleryView').style.display = 'none';
-        }
-
-        function showImageModal(src, title) {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.95);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                z-index: 1000;
-                cursor: pointer;
-                padding: 20px;
-            `;
-            
-            const img = document.createElement('img');
-            img.src = src;
-            img.alt = title;
-            img.style.cssText = `
-                max-width: 90%;
-                max-height: 85%;
-                border-radius: 15px;
-                box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-                object-fit: contain;
-            `;
-            
-            const caption = document.createElement('div');
-            caption.style.cssText = `
-                color: white;
-                text-align: center;
-                font-size: 18px;
-                margin-top: 20px;
-                padding: 10px 20px;
-                background: rgba(0,0,0,0.7);
-                border-radius: 10px;
-            `;
-            caption.textContent = title;
-            
-            modal.appendChild(img);
-            modal.appendChild(caption);
-            modal.onclick = () => document.body.removeChild(modal);
-            
-            document.body.appendChild(modal);
-        }
+function showImageModal(src, caption) {
+    const modal = document.createElement('div');
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100vw';
+    modal.style.height = '100vh';
+    modal.style.background = 'rgba(0,0,0,0.8)';
+    modal.style.display = 'flex';
+    modal.style.flexDirection = 'column';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+    modal.style.zIndex = '9999';
+    
+    const img = document.createElement('img');
+    img.src = src;
+    img.style.maxWidth = '90vw';
+    img.style.maxHeight = '80vh';
+    img.style.borderRadius = '10px';
+    img.style.marginBottom = '20px';
+    
+    const text = document.createElement('div');
+    text.textContent = caption;
+    text.style.color = 'white';
+    text.style.fontSize = '20px';
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = 'Tutup';
+    closeBtn.className = 'btn-no';
+    closeBtn.style.marginTop = '20px';
+    closeBtn.onclick = () => modal.remove();
+    
+    modal.appendChild(img);
+    modal.appendChild(text);
+    modal.appendChild(closeBtn);
+    document.body.appendChild(modal);
+}
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
